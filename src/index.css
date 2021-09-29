@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ui.grid>.row.grid-login-col:first-of-type {
+  padding-top: 1em;
+}
+.ui.grid>.row.grid-login-col:last-of-type {
+  padding-bottom: 1em;
+}
+.ui.grid>.row.login {
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
