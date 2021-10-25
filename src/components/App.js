@@ -21,28 +21,25 @@ class App extends Component {
      
       return (
         <Router>
-           <Fragment>
+         
           <div className="App">
            
           {authedUser === null ? (
-            <Route
-              render={() => (
-                
-                  <Login />
-              
-              )}
+            <Route render={() => (<Login /> )}
             />
           ) : (
             <Fragment>
               <Nav />
+              
               <Switch>
                 <Route exact path="/" component={Home} />
               </Switch>
+             
             </Fragment>
           )}
            
           </div>
-          </Fragment>
+        
         </Router>
       );
     
