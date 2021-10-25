@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {  Header,Form} from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { setAuthedUser } from '../actions/authedUser'
+
 import { Redirect } from 'react-router-dom'
+import { setAuthedUser } from '../actions/authedUser'
+
 export class LoginForm extends Component {
    
     state = {
@@ -18,16 +20,20 @@ export class LoginForm extends Component {
     
     handleSubmit = e => {
       e.preventDefault();
-      //const setAuthedUser  = this.props;
+      const {toHome} = this.props;
       const authedUser = this.state.value;
+      console.log("Hello ", authedUser)
       this.setState(() => ({
        toHome: true
       }))
       
-      console.log('authedUser', authedUser)
+    
       setAuthedUser(authedUser);
-     
       
+      
+       if (toHome === true) {
+        return <Redirect to="/Home" />;
+      }
     };
 
 
@@ -45,9 +51,7 @@ export class LoginForm extends Component {
       const { value,toHome } = this.state;
       const disabled = value === '' ? true : false;
        console.log('==== toHome =====',toHome)
-      if (toHome === true) {
-        return <Redirect to="/" />;
-      }
+     
       
       return (
         <Form onSubmit={this.handleSubmit}>
@@ -70,8 +74,10 @@ export class LoginForm extends Component {
     }
   }
 
-function mapStateToProps({ users }) {
+  
+function mapStateToProps({ users, authedUser }) {
     return {
+      authedUser,
       users: Object.values(users)
     };
   }

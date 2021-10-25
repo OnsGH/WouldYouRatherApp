@@ -18,19 +18,31 @@ class App extends Component {
   
     render() {
       const { authedUser } = this.props;
+     
       return (
         <Router>
+           <Fragment>
           <div className="App">
            
-              <Route
-                render={() => (
-                  <ContentGrid>
-                    <Login />
-                  </ContentGrid>
-                )}
-              />
+          {authedUser === null ? (
+            <Route
+              render={() => (
+                
+                  <Login />
+              
+              )}
+            />
+          ) : (
+            <Fragment>
+              <Nav />
+              <Switch>
+                <Route exact path="/" component={Home} />
+              </Switch>
+            </Fragment>
+          )}
            
           </div>
+          </Fragment>
         </Router>
       );
     
